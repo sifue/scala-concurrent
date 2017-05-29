@@ -9,7 +9,13 @@ object SingletonProvider {
 
   def get: BigObject = {
     if (singleton == null) {
-      singleton = new BigObject()
+      this.synchronized {
+        if (singleton == null) {
+          this.synchronized {
+            singleton = new BigObject()
+          }
+        }
+      }
     }
     singleton
   }
