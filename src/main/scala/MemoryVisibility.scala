@@ -1,6 +1,6 @@
 object MemoryVisibility extends App {
-  var number = 0
-  var ready = false
+  @volatile var number = 0
+  @volatile var ready = false
 
   new Thread(() => {
     while (!ready) {
