@@ -10,7 +10,7 @@ object Escape extends App {
 }
 
 object EscapeVarSeqProvider {
-  var seq: Seq[Int] = Seq() // ESCAPE!
+  private[this] var seq: Seq[Int] = Seq()
   def next: Seq[Int] = synchronized {
     val nextSeq = seq :+ (seq.size + 1)
     seq = nextSeq
@@ -22,6 +22,6 @@ object EscapeArrayBufferProvider {
   private[this] val array: ArrayBuffer[Int] = ArrayBuffer.empty[Int]
   def next: ArrayBuffer[Int] = synchronized {
     array += (array.size + 1)
-    array // ESCAPE!
+    array.clone
   }
 }
