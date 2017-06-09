@@ -7,15 +7,9 @@ object CheckThenAct extends App {
 object SingletonProvider {
   private[this] var singleton: BigObject = null
 
-  def get: BigObject = {
+  def get: BigObject = this.synchronized {
     if (singleton == null) {
-      this.synchronized {
-        if (singleton == null) {
-          this.synchronized {
-            singleton = new BigObject()
-          }
-        }
-      }
+      singleton = new BigObject()
     }
     singleton
   }
