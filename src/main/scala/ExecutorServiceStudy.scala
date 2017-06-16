@@ -17,5 +17,5 @@ object ExecutorServiceStudy extends App {
   }
 
   println("sum: " + futures.foldLeft(0)((acc, f) =>  acc + f.get()))
-  ex.shutdownNow()
+  es.shutdownNow()
 }
